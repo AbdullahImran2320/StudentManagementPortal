@@ -1,0 +1,14 @@
+﻿# Build artifacts
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+
+# User secrets (should never be here anyway, but just in case)
+secrets.json
+
+# OS files
+.DS_Store
+Thumbs.db

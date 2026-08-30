@@ -1,0 +1,30 @@
+# ── .NET / Backend ─────────────────────────────
+Backend/bin/
+Backend/obj/
+Backend/wwwroot/
+**/*.user
+.vs/
+secrets.json
+
+# ── Angular / Frontend ─────────────────────────
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.angular/
+npm-debug.log
+yarn-error.log
+
+# ── Build / installer output ───────────────────
+publish/
+setup/*.exe
+
+# ── IDEs and editors ────────────────────────────
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ── OS files ────────────────────────────────────
+.DS_Store
+Thumbs.db
