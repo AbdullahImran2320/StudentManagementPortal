@@ -16,6 +16,8 @@ import { Stats, Student } from '../../models/student.model';
       <div class="nav-right">
         <span>{{ userName }} ({{ userRole }})</span>
         <a routerLink="/students">Students</a>
+        <a routerLink="/attendance" *ngIf="isAdmin || isTeacher">Attendance</a>
+        <a routerLink="/admin-users" *ngIf="isAdmin">User Approvals</a>
         <button (click)="logout()">Logout</button>
       </div>
     </nav>
@@ -197,6 +199,7 @@ export class DashboardComponent implements OnInit {
   userName                   = '';
   userRole                   = '';
   isAdmin                    = false;
+  isTeacher                  = false;
 
   constructor(
     private studentService: StudentService,
@@ -213,6 +216,7 @@ export class DashboardComponent implements OnInit {
     this.userName = this.auth.getName();
     this.userRole = this.auth.getRole();
     this.isAdmin  = this.auth.isAdmin();
+    this.isTeacher = this.auth.isTeacher();
     this.loadStats();
    // this.loadTopStudents();
   }

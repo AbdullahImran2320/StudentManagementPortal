@@ -10,10 +10,25 @@ namespace StudentAPI.Data
 
         public DbSet<Student> Students { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<AcademicClass> AcademicClasses { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<ClassEnrollment> ClassEnrollments { get; set; }
+        public DbSet<AttendanceRecord> AttendanceRecords { get; set; }
+        public DbSet<MarkRecord> MarkRecords { get; set; }
+        public DbSet<Exam> Exams { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<AcademicClass>().HasIndex(x => new { x.Program, x.Semester, x.Section, x.Session }).IsUnique();
+            modelBuilder.Entity<Subject>().HasIndex(x => new { x.AcademicClassId, x.Code }).IsUnique();
+            modelBuilder.Entity<ClassEnrollment>().HasIndex(x => new { x.AcademicClassId, x.StudentId }).IsUnique();
+            modelBuilder.Entity<AttendanceRecord>().HasIndex(x => new { x.SubjectId, x.StudentId, x.LectureDate }).IsUnique();
+            modelBuilder.Entity<MarkRecord>().HasOne(x => x.Exam).WithMany(x => x.MarkRecords).HasForeignKey(x => x.ExamId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Subject>().HasOne(x => x.TeacherUser).WithMany().HasForeignKey(x => x.TeacherUserId).OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Exam>().HasOne(x => x.AcademicClass).WithMany().HasForeignKey(x => x.AcademicClassId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Exam>().HasIndex(x => new { x.AcademicClassId, x.Name }).IsUnique();
 
             modelBuilder.Entity<Student>().HasData(
              new Student
@@ -411,17 +426,23 @@ namespace StudentAPI.Data
                     Id = 1,
                     Name = "Admin",
                     Email = "admin@gmail.com",
-                    PasswordHash = "$2b$11$Glz.i7DzU/P8b4/9n/Hwc.EndWg4drs7VofW3FEM4/5GghBZrYdwG",
+                    // Password: Admin@12345
+                    PasswordHash = "$2b$12$ozwluGM8jahSdFWdlXti3ejmtFyL2ImvmjmwMSBd3gYDwJHwLHhF6",
                     Role = "Admin",
+                    RequestedRole = "Admin",
+                    IsApproved = true,
                     CreatedAt = new DateTime(2026, 07, 21)
                 },
                 new User
                 {
                     Id = 2,
                     Name = "abdullah",
-                    Email = "abdullah@gmail.com",
-                    PasswordHash = "$2b$11$Glz.i7DzU/P8b4/9n/Hwc.EndWg4drs7VofW3FEM4/5GghBZrYdwG",
-                    Role = "admin",
+                    Email = "abdullah58rajput@gmail.com",
+                    // Password: Admin@12345
+                    PasswordHash = "$2b$12$ozwluGM8jahSdFWdlXti3ejmtFyL2ImvmjmwMSBd3gYDwJHwLHhF6",
+                    Role = "Admin",
+                    RequestedRole = "Admin",
+                    IsApproved = true,
                     CreatedAt = new DateTime(2026, 06, 21)
                 }
             );

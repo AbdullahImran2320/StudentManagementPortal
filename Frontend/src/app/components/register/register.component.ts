@@ -43,8 +43,8 @@ import { AuthService } from '../../services/auth.service';
         <div class="field">
           <label>Role</label>
           <select [(ngModel)]="role">
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
+            <option value="Student">Student</option>
+            <option value="Teacher">Teacher</option>
           </select>
         </div>
 
@@ -126,7 +126,7 @@ export class RegisterComponent {
   email    = '';
   password = '';
   phone    = '';
-  role     = 'User';
+  role     = 'Student';
   loading  = false;
   error    = '';
 
@@ -154,7 +154,7 @@ export class RegisterComponent {
     phone: this.phone,
     role: this.role
   }).subscribe({
-    next: () => this.router.navigate(['/dashboard']),
+    next: () => this.router.navigate(['/login'], { queryParams: { pending: '1' } }),
     error: (err) => {
       this.error   = err.error?.message ?? 'Registration failed!';
       this.loading = false;

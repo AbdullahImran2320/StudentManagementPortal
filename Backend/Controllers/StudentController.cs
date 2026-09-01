@@ -84,7 +84,7 @@ namespace StudentAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> Create([FromBody] CreateStudentDto dto)
         {
             _log.LogInformation($"Creating Student: {dto.Name}");
@@ -93,7 +93,7 @@ namespace StudentAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
-        [Authorize]
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateStudentDto dto)
         {
             _log.LogInformation($"Updating Student: {dto.Name}");

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -14,6 +14,7 @@ import { AuthService } from '../../services/auth.service';
         <div class="logo">🎓</div>
         <h2>Student Management System</h2>
         <p class="subtitle">Login to continue</p>
+        <div class="pending" *ngIf="pending">Account created. An administrator must approve it before you can sign in.</div>
 
         <div class="error" *ngIf="error">{{ error }}</div>
 
@@ -98,6 +99,7 @@ import { AuthService } from '../../services/auth.service';
       margin-bottom: 15px;
       font-size: 14px;
     }
+    .pending { background:#e5fbf8; color:#187a75; padding:10px; border-radius:6px; margin-bottom:15px; font-size:13px; }
     .link { margin-top: 20px; color: #666; font-size: 14px; }
     a { color: #667eea; text-decoration: none; }
   `]
@@ -107,11 +109,13 @@ export class LoginComponent {
   password = '';
   loading  = false;
   error    = '';
+  pending = false;
 
   constructor(
     private auth: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    route: ActivatedRoute
+  ) { this.pending = route.snapshot.queryParamMap.get('pending') === '1'; }
 
   login() {
     if (!this.email || !this.password) {

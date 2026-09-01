@@ -1,41 +1,18 @@
-# Student Management System — Frontend
+# School Portal — Frontend
 
-Angular frontend for the [Student Management System API](https://github.com/AbdullahImran2320/StudentManagementAPI).
+Angular 22 standalone frontend for the School Management Portal.
 
-## Features
-- JWT-based login and registration
-- Student dashboard with live stats (total/active students, average GPA)
-- Student CRUD with search and filtering
+## Run
+1. Install Node.js 22+.
+2. Run `npm install`.
+3. Run `npm start`.
+4. Open `http://localhost:4200`.
 
-## Setup
+Set the API base URL in `src/environment/environment.ts` before running if your ASP.NET API uses a different address.
 
-```bash
-npm install
-ng serve
-```
+## Roles
+- Principal/Admin: classes, semester structure, students, subjects, teacher assignment, exams, result publication and account approvals.
+- Teacher: assigned classes/subjects, whole-class attendance, Present/Absent/Not marked workflow, exam marks and class results.
+- Student: read-only published results and personal attendance.
 
-Runs at `http://localhost:4200`. Requires the backend API running — see the [backend repo](https://github.com/AbdullahImran2320/StudentManagementAPI) for setup.
-
-## Build
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory.
-
-## Running unit tests
-
-```bash
-ng test
-```
-
-Runs unit tests via [Vitest](https://vitest.dev/).
-
-## Running end-to-end tests
-
-Angular CLI does not include an e2e framework by default — you can add one that suits your needs.
-
----
-
-Generated using [Angular CLI](https://github.com/angular/angular-cli) v22.0.7 — see the [CLI reference](https://angular.dev/tools/cli) for the full command list.
+The frontend is source-only. No `node_modules`, build output, or publish output is included.

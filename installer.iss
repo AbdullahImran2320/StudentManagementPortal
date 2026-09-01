@@ -6,7 +6,7 @@
 #define MyLauncher "LaunchStudentManagementPortal.ps1"
 
 [Setup]
-AppId={{4A6F0D2E-7C1B-4E5A-9F3D-STUMGMTPORTAL}}
+AppId={{4A6F0D2E-7C1B-4E5A-9F3D-A11B22C33D44}}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
@@ -59,17 +59,17 @@ begin
 end;
 
 function InitializeSetup(): Boolean;
+var
+  Msg: String;
 begin
   Result := True;
   if not IsLocalDBInstalled() then
   begin
-    if MsgBox('SQL Server LocalDB was not detected on this computer.' + #13#10 +
-               #13#10 +
-               'Student Management Portal needs LocalDB (or SQL Server) to store data.' + #13#10 +
-               'You can install it later from https://aka.ms/localdbdotnetcore' + #13#10 +
-               #13#10 +
-               'Continue installing anyway?',
-               mbConfirmation, MB_YESNO) = IDNO then
+    Msg := 'SQL Server LocalDB was not detected on this computer.' + #13#10 + #13#10 +
+      'Student Management Portal needs LocalDB (or SQL Server) to store data.' + #13#10 +
+      'You can install it later from https://aka.ms/localdbdotnetcore' + #13#10 + #13#10 +
+      'Continue installing anyway?';
+    if MsgBox(Msg, mbConfirmation, MB_YESNO) = IDNO then
       Result := False;
   end;
 end;
