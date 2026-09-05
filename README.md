@@ -13,8 +13,17 @@ does.
 
 ## Features
 
-- JWT authentication with role-based access control (Admin/User)
-- Student CRUD with search, filtering, and top-student ranking by GPA
+- JWT authentication with role-based access control (Admin/Principal, Teacher,
+  Student), plus a pending-approval flow for new self-registrations
+- Principal control center: create classes by semester/section/session,
+  enroll students, assign subjects to teachers, create and publish/unpublish
+  exam results
+- Teacher workspace: take attendance and enter marks for assigned subjects
+- Student portal: read-only view of enrollment, attendance, and published
+  results only
+- Admin panel: approve/promote self-registered accounts, or create
+  Teacher/Admin accounts directly without the approval queue
+- Light/dark theme toggle
 - Live dashboard stats
 - Welcome notifications on registration via Email (MailKit/SMTP), SMS and
   WhatsApp (Twilio)
@@ -51,6 +60,9 @@ dotnet run
 ```
 
 Swagger UI: `https://localhost:7141/swagger`
+
+Default principal/admin login after first run: `admin@portal.local` /
+`admin 123` — change this before any real deployment.
 
 **Frontend**
 
@@ -89,7 +101,9 @@ that:
 - Installs the app under Program Files
 - Adds a Start Menu shortcut and an optional desktop shortcut
 - Runs the app and opens it in the browser on first launch
-- Applies EF Core migrations automatically on first startup
+- Applies EF Core migrations automatically on first startup, and seeds demo
+  academic data (12 teachers, 50 students across 8 semesters x two morning
+  sections) on first run
 
 **Before running `build.bat` for a real release**, replace the placeholder
 values in `Backend/appsettings.json` (JWT secret, email, Twilio credentials)
