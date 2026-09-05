@@ -85,7 +85,7 @@ import { AuthService } from '../../services/auth.service';
       color: #555;
       font-size: 14px;
     }
-    input {
+    input, select {
       width: 100%;
       padding: 10px;
       border: 1px solid #ddd;
@@ -93,7 +93,7 @@ import { AuthService } from '../../services/auth.service';
       font-size: 14px;
       box-sizing: border-box;
     }
-    input:focus {
+    input:focus, select:focus {
       outline: none;
       border-color: #667eea;
     }

@@ -41,7 +41,7 @@ import { Stats, Student } from '../../models/student.model';
         </div>
         <div class="stat-card purple">
           <div class="stat-number">
-            {{ stats.averageGPA | number:'1.2-2' }}
+           {{ stats.averageGpa | number:'1.2-2' }}
           </div>
           <div class="stat-label">Average GPA</div>
         </div>

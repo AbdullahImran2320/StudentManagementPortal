@@ -3,22 +3,7 @@ using StudentAPI.Models;
 
 namespace StudentAPI.Data
 {
-    /// <summary>
-    /// One-time programmatic demo-data generator.
-    /// Creates: 8 semesters x 2 sections (Morning-A / Morning-B) x 25 students = 400 students,
-    /// 12 teacher accounts, 5 subjects per class assigned round-robin to teachers,
-    /// and enrollment records linking students to their class.
-    ///
-    /// ASSUMPTIONS (confirm against your real Models before running):
-    ///  - AcademicClass has: Program, Semester, Section, Session
-    ///  - Subject has: Name, Code, AcademicClassId, TeacherUserId
-    ///  - ClassEnrollment has: AcademicClassId, StudentId
-    ///  - Student has: Name, Email, GPA, City, Course, EnrollDate, IsActive
-    ///  - User has: Name, Email, PasswordHash, Role, RequestedRole, IsApproved, CreatedAt, Phone
-    /// If any property name differs in your actual classes, this won't compile —
-    /// send me Student.cs / User.cs / AcademicClass.cs / Subject.cs / ClassEnrollment.cs
-    /// and I'll correct the field names.
-    /// </summary>
+   
     public static class DemoDataSeeder
     {
         // All demo accounts (teachers) use this password: Admin@12345
